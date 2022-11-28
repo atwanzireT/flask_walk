@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+
+{% block title %}Subcribe{% endblock title %}
+
+{% block content %}
+<div class="container">
+    <h1>Subscribe To Our Services</h1>
+    <form action="" method="post"></form>
+    <div class="mb-3">
+        <label for="exampleFormControlInput1" class="form-label">Email address</label>
+        <input type="email" class="form-control" id="exampleFormControlInput1" name="email" placeholder="name@example.com">
+    </div>
+    <div class="mb-3">
+        <label for="exampleFormControlTextarea1" class="form-label">Name</label>
+        <input class="form-control" name="name" id="exampleFormControlTextarea1" rows="3"></input>
+    </div>
+    <div class="mb-3">
+        <button class="btn btn-danger">SUBMIT</button>
+    </div>
+</div>
+{% endblock content %}
