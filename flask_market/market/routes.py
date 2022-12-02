@@ -1,4 +1,6 @@
-from . import app, render_template
+from . import app, render_template, db
+from .models import Item
+
 
 @app.route('/')
 def home_page():
@@ -6,9 +8,19 @@ def home_page():
 
 @app.route('/market/')
 def market():
-    items = [
-        {'id': 1, 'name': 'Phone', 'barcode': '893212299897', 'price': 500},
-        {'id': 2, 'name': 'Laptop', 'barcode': '123985473165', 'price': 900},
-        {'id': 3, 'name': 'Keyboard', 'barcode': '231985128446', 'price': 150}
-    ]
+    items = Item.query.all()
     return render_template('market.html', items = items)
+
+# @app.route('/database')
+# def database():
+#     items = [
+#         {"name":"techno", "price":189, "barcode":"346782128", "description":"so cool"},
+#         {"name":"oppo", "price":289, "barcode":"343422128", "description":"so cool"},
+#         {"name":"redmi", "price":189, "barcode":"346782441", "description":"so cool"},
+#         {"name":"LG", "price":189, "barcode":"346782098", "description":"so cool"},
+#     ]
+#     for item in items:
+#         item = Item(name=item['name'], price=item['price'], barcode=item['barcode'], description=item['description'])
+#         db.session.add(item)
+#         db.session.commit()
+#     return "Thank you!"
