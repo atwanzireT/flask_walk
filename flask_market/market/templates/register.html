@@ -1,29 +1,19 @@
 {% extends 'base.html' %}
 
 {% block content %}
-<div class="container">
-    <h5>Registration  Form</h5>
-    <form method="POST" class="form-register" style="color:white">
-        <img class="mb-4" src="https://res.cloudinary.com/jimshapedcoding/image/upload/v1597332609/android-icon-192x192_ove2a7.png" alt="">
-        <h1 class="h3 mb-3 font-weight-normal">
+<div class="container text-center">
+    <form method="POST" class="form-register">
+        <h4 class="h3 font-weight-normal">
             Please Create your Account
-        </h1>
+        </h4>
         <br>
-        {{ form.username.label() }}
-        {{ form.username(class="form-control", placeholder="User Name") }}
-
-        {{ form.email.label() }}
-        {{ form.email(class="form-control", placeholder="Email Address") }}
-
-        {{ form.password1.label() }}
-        {{ form.password1(class="form-control", placeholder="Password") }}
-
-        {{ form.password2.label() }}
-        {{ form.password2(class="form-control", placeholder="Confirm Password") }}
-
+        {{ form.username(class="form-control m-1", placeholder="User Name") }}
+        {{ form.email(class="form-control m-1", placeholder="Email Address") }}
+        {{ form.password1(class="form-control m-1", placeholder="Password") }}
+        {{ form.password2(class="form-control m-1", placeholder="Confirm Password") }}
         <br>
 
-        {{ form.submit(class="btn btn-lg btn-block btn-primary") }}
+        {{ form.submit(class="btn btn-lg btn-danger btn-block") }}
 
     </form>
 </div>

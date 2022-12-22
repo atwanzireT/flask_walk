@@ -7,20 +7,31 @@ from .forms import RegistrationForm
 def home_page():
     return render_template('home.html')
 
+
 @app.route('/market/')
 def market():
     items = Item.query.all()
-    return render_template('market.html', items = items)
+    return render_template('market.html', items=items)
+
 
 @app.route('/user/')
 def users():
     users = User.query.all()
     return users
 
+
 @app.route('/register/')
 def register():
     form = RegistrationForm()
-    return render_template('register.html', form = form)
+    if form.validate_on_submit():
+        user_to_create = User(username=form.username.data,
+                              email=form.email.data,
+                              password1=form.password1.data,
+                              password2=form.password2.data)
+        db.session.add(user_to_create)
+    return render_template('register.html', form=form)
+
+
 # @app.route('/database_user')
 # def database():
 #     users = [
@@ -34,8 +45,6 @@ def register():
 #         db.session.add(user)
 #         db.session.commit()
 #     return "Thank you!"
-
-
 
 # @app.route('/database')
 # def database():
