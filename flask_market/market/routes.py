@@ -1,6 +1,7 @@
-from . import app, render_template, db
+from . import app, render_template, db, redirect, url_for
 from .models import Item, User
-from .forms import RegistrationForm
+from .forms import RegisterForm
+
 
 
 @app.route('/')
@@ -20,15 +21,20 @@ def users():
     return users
 
 
-@app.route('/register/')
+@app.route('/register/', methods = ['POST', 'GET'])
 def register():
-    form = RegistrationForm()
+    form = RegisterForm()
     if form.validate_on_submit():
         user_to_create = User(username=form.username.data,
                               email=form.email.data,
-                              password1=form.password1.data,
-                              password2=form.password2.data)
+                              password_hash=form.password1.data,
+                              )
         db.session.add(user_to_create)
+        db.session.commit()
+        return redirect(url_for('market'))
+    if form.errors != {}: # if there are not errors from the validation
+        for err_msg in form.errors.values():
+            print(f"There was an error: {err_msg}", category = 'danger')
     return render_template('register.html', form=form)
 
 

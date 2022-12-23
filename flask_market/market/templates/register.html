@@ -3,16 +3,16 @@
 {% block content %}
 <div class="container text-center">
     <form method="POST" class="form-register">
+        {{form.hidden_tag()}}
         <h4 class="h3 font-weight-normal">
             Please Create your Account
         </h4>
         <br>
         {{ form.username(class="form-control m-1", placeholder="User Name") }}
-        {{ form.email(class="form-control m-1", placeholder="Email Address") }}
+        {{ form.email_address(class="form-control m-1", placeholder="Email Address") }}
         {{ form.password1(class="form-control m-1", placeholder="Password") }}
         {{ form.password2(class="form-control m-1", placeholder="Confirm Password") }}
         <br>
-
         {{ form.submit(class="btn btn-lg btn-danger btn-block") }}
 
     </form>
